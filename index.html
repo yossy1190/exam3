@@ -8,7 +8,7 @@
     <!--検索ワード入力欄-->
     <input type="text" id="search_word">
     
-    <!--検索ボタン-->
+    <!--検索ボタン onclickで「クリックされたら、指定の関数を実行」-->
     <button onclick=empty_alert()>検索</button>
     
     <!-- 検索結果表示欄-->
@@ -19,7 +19,7 @@
     <!--空欄だった場合の処理-->
     <script type="text/javascript"  >
 
-        //検索ボックスが空欄だった空欄だったとき、クリックされたら注意表示を出す
+        //検索ワード欄が空欄だったらalertを出す
         function empty_alert(){
             if(document.getElementById("search_word").value===""){
                 alert("空欄に文字を入力してください")
