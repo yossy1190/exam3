@@ -9,27 +9,22 @@
     <input type="text" id="search_word">
     
     <!--検索ボタン-->
-    <input type="submit" value="検索" id="search_btn">
+    <button onclick=empty_alert()>検索</button>
     
     <!-- 検索結果表示欄-->
     <div class="result">
         <textarea id="search_result" placeholder="ここに検索結果が表示されます" display:block></textarea>
     </div>
-
+    
     <!--空欄だった場合の処理-->
     <script type="text/javascript"  >
 
         //検索ボックスが空欄だった空欄だったとき、クリックされたら注意表示を出す
-        if (document.getElementById("search_word").value===""){
-            document.getElementById("search_btn").addEventListener("click",function(){
-                alert("空欄に文字を入力してください");
-            })
-        }else{
-            
+        function empty_alert(){
+            if(document.getElementById("search_word").value===""){
+                alert("空欄に文字を入力してください")
+            }
         }
-        
-        
-   
     </script>
 </body>
 </html>
