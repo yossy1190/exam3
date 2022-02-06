@@ -1,17 +1,35 @@
 import eel
+# desktop.pyの関数を利用するため、importする
 import desktop
 import search
+import pandas as pd
 
-app_name="C:/Users/Yoshi/Project2/study-03-desktop-01-master/study-03-desktop-01-master/html"
-end_point="C:/Users/Yoshi/Project2/study-03-desktop-01-master/study-03-desktop-01-masterhtml/index.html"
+
+# eel_projectの直下にhtmlフォルダあり
+app_name="eel_project/html"
+# htmlフォルダの直下にあるindex.htmlを参照
+end_point="index.html"
 size=(700,600)
 
-#js側から、kimetsu_search関数が呼び出せるように@eel.exposeでデコレートする
-@ eel.expose
-def kimetsu_search(val):
-    # searchファイルのなかのkimetsu_search関数を呼び出している
-    # ＝＞jsからkimetsu_searchが呼び出せるようになる。
-    # search.kimetsu_search(word)
+@eel.expose
+def python_function2(val):
     return val
+
+@ eel.expose
+def kimetsu_search(word):
+    search.kimetsu_search(word)
+    df=pd.read_csv("eel_project/source.csv")
+    source=list(df["name"])
+    if word in source:
+        return "『{}』はリストにあります".format(word)
+    else:
+        source.append(word)
+        # CSV書き込み
+        df=pd.DataFrame(source,columns=["name"])
+        df.to_csv("eel_project/source.csv",encoding="utf_8-sig")
+        return "『{}』はリストにありません。リストに追加します。".format(word)
+
+        
 desktop.start(app_name,end_point,size)
-#desktop.start(size=size,appName=app_name,endPoint=end_point)
+
+

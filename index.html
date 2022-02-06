@@ -6,7 +6,7 @@
 </head>
 <body>
     <span>検索ワード</span>
-    <input type="text" id="search_word">
+    <input type="text" id="search_domain">
     
     <!--検索ボタン onclickで「クリックされたら、指定の関数を実行」-->
     <button onclick=empty_alert();AddWordToTextarea()>検索</button>
@@ -19,16 +19,16 @@
     <script>   
 
         function empty_alert(){
-            if(document.getElementById("search_word").value===""){
+            if(document.getElementById("search_domain").value===""){
                 alert("空欄に文字を入力してください")
             }
         }
         //async awaitで非同期処理を実行
         async function AddWordToTextarea(){
             //検索ワード欄の値を取得して、aaという変数に入れる
-            let aa = document.getElementById("search_word").value
+            let search_word = document.getElementById("search_domain").value
             //eelでpythonのkimetsu_searchを叩く。aaを引数として実行。returnでwordが戻ってくるのでvalに代入
-            let val=await eel. kimetsu_search(aa)();
+            let val=await eel. kimetsu_search(search_word)();
             //valを検索結果欄に出力　↓ここがnullになってしまう。。
             document.getElementById("search_result").value += val  + "\n";
         }
